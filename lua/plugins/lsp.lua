@@ -5,7 +5,15 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        opts = { ensure_installed = { "lua_ls", "pyright", "rust_analyzer", "slint_lsp" } },
+        opts = {
+            ensure_installed = {
+                "bashls",
+                "lua_ls",
+                "pyright",
+                "rust_analyzer",
+                "slint_lsp",
+            },
+        },
         config = function(_, opts)
             require("mason-lspconfig").setup(opts)
         end,
@@ -28,6 +36,10 @@ return {
                 map("n", "rn", "<CMD>lua vim.lsp.buf.rename()<CR>", args)
                 map("i", "<C-h>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", args)
             end
+            lspconfig.bashls.setup({
+                on_attach = on_attach_cb,
+                capabilities = capabilities,
+            })
             lspconfig.lua_ls.setup({
                 on_attach = on_attach_cb,
                 settings = {

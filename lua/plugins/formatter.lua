@@ -5,6 +5,11 @@ return {
             "williamboman/mason.nvim",
             "nvimtools/none-ls.nvim",
         },
-        opts = { ensure_installed = { "stylua" } }
-    }
+        opts = {
+            ensure_installed = {
+                "shfmt",
+                "stylua",
+            },
+        },
+    },
 }
