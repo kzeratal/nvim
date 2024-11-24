@@ -24,7 +24,7 @@ return {
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local on_attach_cb = function(_, bufnr)
+            local on_attach = function(_, bufnr)
                 local function map(...)
                     vim.api.nvim_buf_set_keymap(bufnr, ...)
                 end
@@ -36,38 +36,34 @@ return {
                 map("n", "rn", "<CMD>lua vim.lsp.buf.rename()<CR>", args)
                 map("i", "<C-h>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", args)
             end
-            lspconfig.bashls.setup({
-                on_attach = on_attach_cb,
-                capabilities = capabilities,
-            })
-            lspconfig.lua_ls.setup({
-                on_attach = on_attach_cb,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = {
-                                "vim",
+
+            local servers = {
+                bashls = {},
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim" },
                             },
-                        },
-                        workspace = {
-                            library = {
-                                vim.env.VIMRUNTIME,
+                            workspace = {
+                                library = {
+                                    vim.env.VIMRUNTIME,
+                                },
                             },
                         },
                     },
                 },
-                capabilities = capabilities,
-            })
-            lspconfig.pyright.setup({
-                on_attach = on_attach_cb,
-                capabilities = capabilities,
-            })
-            lspconfig.slint_lsp.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
-            })
+                pyright = {},
+                rust_analyzer = {},
+                slint_lsp = {},
+            }
+
+            for server, config in pairs(servers) do
+                lspconfig[server].setup(vim.tbl_extend("force", {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                }, config))
+            end
         end,
     },
 }
