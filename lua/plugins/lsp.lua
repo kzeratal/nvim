@@ -10,6 +10,7 @@ return {
                 "bashls",
                 "lua_ls",
                 "pyright",
+                "ruff",
                 "rust_analyzer",
                 "slint_lsp",
             },
@@ -54,6 +55,7 @@ return {
                     },
                 },
                 pyright = {},
+                ruff = {},
                 rust_analyzer = {},
                 slint_lsp = {},
             }
