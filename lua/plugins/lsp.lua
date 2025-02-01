@@ -13,6 +13,7 @@ return {
                 "ruff",
                 "rust_analyzer",
                 "slint_lsp",
+                "ts_ls",
             },
         },
         config = function(_, opts)
@@ -58,6 +59,7 @@ return {
                 ruff = {},
                 rust_analyzer = {},
                 slint_lsp = {},
+                ts_ls = {},
             }
 
             for server, config in pairs(servers) do
