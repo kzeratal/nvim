@@ -4,25 +4,8 @@ return {
         opts = {},
     },
     {
-        "williamboman/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = {
-                "bashls",
-                "lua_ls",
-                "pyright",
-                "ruff",
-                "rust_analyzer",
-                "slint_lsp",
-                "ts_ls",
-            },
-        },
-        config = function(_, opts)
-            require("mason-lspconfig").setup(opts)
-        end,
-    },
-    {
         "neovim/nvim-lspconfig",
-        dependencies = { "mason-lspconfig.nvim" },
+        dependencies = { "mason-tool-installer.nvim" },
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
