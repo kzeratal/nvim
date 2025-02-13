@@ -9,6 +9,7 @@ return {
             { "rust-analyzer" },
             { "shfmt" },
             { "slint-lsp" },
+            { "sql-formatter" },
             { "stylua" },
             { "typescript-language-server" },
         },

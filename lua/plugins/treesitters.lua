@@ -12,6 +12,7 @@ return {
                 "python",
                 "rust",
                 "slint",
+                "sql",
                 "typescript",
             },
         },
