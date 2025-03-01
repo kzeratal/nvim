@@ -9,6 +9,9 @@ vim.opt.expandtab = true
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.undodir"
+
 vim.filetype.add({
     extension = {
         slint = "slint",

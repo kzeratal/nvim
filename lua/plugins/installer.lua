@@ -3,6 +3,7 @@ return {
     opts = {
         ensure_installed = {
             { "bash-language-server" },
+            { "clangd" },
             { "lua-language-server" },
             { "prettierd" },
             { "ruff" },

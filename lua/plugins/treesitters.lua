@@ -8,6 +8,7 @@ return {
             indent = { enable = true },
             ensure_installed = {
                 "bash",
+                "cpp",
                 "lua",
                 "python",
                 "rust",
