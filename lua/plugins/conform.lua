@@ -6,10 +6,6 @@ return {
             sql = { "sql_formatter" },
             typescript = { "prettierd" },
         },
-        format_on_save = {
-            timeout_ms = 500,
-            lsp_format = "fallback",
-        },
         formatters = {
             stylua = {
                 args = {
@@ -20,4 +16,10 @@ return {
             },
         },
     },
+    config = function(_, opts)
+        require("conform").setup(opts)
+        vim.keymap.set("n", "<leader>f", function()
+            require("conform").format({ timeout_ms = 500, lsp_format = "fallback" })
+        end, { desc = "Format buffer" })
+    end,
 }
