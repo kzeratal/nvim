@@ -4,6 +4,7 @@ return {
         ensure_installed = {
             { "bash-language-server" },
             { "clangd" },
+            { "isort" },
             { "lua-language-server" },
             { "prettierd" },
             { "ruff" },
