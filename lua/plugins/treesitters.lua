@@ -13,9 +13,7 @@ return {
                 "lua",
                 "python",
                 "rust",
-                "slint",
                 "sql",
-                "typescript",
             },
         },
         config = function(_, opts)

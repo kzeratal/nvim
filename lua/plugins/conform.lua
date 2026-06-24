@@ -7,7 +7,6 @@ return {
             lua = { "stylua" },
             python = { "isort", "ruff_format" },
             sql = { "sql_formatter" },
-            typescript = { "prettierd" },
         },
         formatters = {
             stylua = {

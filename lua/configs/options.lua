@@ -11,9 +11,3 @@ vim.opt.undodir = os.getenv("HOME") .. "/.undodir"
 
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
-
-vim.filetype.add({
-    extension = {
-        slint = "slint",
-    },
-})

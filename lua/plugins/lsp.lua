@@ -35,8 +35,6 @@ return {
                 pyright = {},
                 ruff = {},
                 rust_analyzer = {},
-                slint_lsp = {},
-                ts_ls = {},
             }
 
             require("mason-lspconfig").setup({
