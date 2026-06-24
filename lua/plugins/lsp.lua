@@ -4,37 +4,31 @@ return {
         opts = {},
     },
     {
-        "neovim/nvim-lspconfig",
-        dependencies = { "mason-tool-installer.nvim" },
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
         config = function()
-            local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local on_attach = function(_, bufnr)
-                local function map(...)
-                    vim.api.nvim_buf_set_keymap(bufnr, ...)
-                end
-                local args = { noremap = true, silent = true }
-                map("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>", args)
-                map("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>", args)
-                map("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>", args)
-                map("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>", args)
-                map("n", "rn", "<CMD>lua vim.lsp.buf.rename()<CR>", args)
-                map("i", "<C-h>", "<CMD>lua vim.lsp.buf.signature_help()<CR>", args)
+                local opts = { noremap = true, silent = true, buffer = bufnr }
+                vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+                vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+                vim.keymap.set("n", "rn", vim.lsp.buf.rename, opts)
+                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+                vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+                vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+                vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
             end
 
             local servers = {
                 bashls = {},
+                clangd = {},
                 lua_ls = {
                     settings = {
                         Lua = {
-                            diagnostics = {
-                                globals = { "vim" },
-                            },
-                            workspace = {
-                                library = {
-                                    vim.env.VIMRUNTIME,
-                                },
-                            },
+                            diagnostics = { globals = { "vim" } },
+                            workspace = { library = { vim.env.VIMRUNTIME } },
                         },
                     },
                 },
@@ -45,12 +39,21 @@ return {
                 ts_ls = {},
             }
 
-            for server, config in pairs(servers) do
-                lspconfig[server].setup(vim.tbl_extend("force", {
-                    on_attach = on_attach,
-                    capabilities = capabilities,
-                }, config))
-            end
+            require("mason-lspconfig").setup({
+                ensure_installed = vim.tbl_keys(servers),
+            })
+
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    require("lspconfig")[server_name].setup(vim.tbl_extend("force", {
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                    }, servers[server_name] or {}))
+                end,
+            })
         end,
+    },
+    {
+        "neovim/nvim-lspconfig",
     },
 }
