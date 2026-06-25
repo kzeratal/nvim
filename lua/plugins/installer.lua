@@ -3,7 +3,6 @@ return {
     opts = {
         ensure_installed = {
             "clang-format",
-            "isort",
             "shfmt",
             "sql-formatter",
             "stylua",
