@@ -41,14 +41,12 @@ return {
                 ensure_installed = vim.tbl_keys(servers),
             })
 
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    require("lspconfig")[server_name].setup(vim.tbl_extend("force", {
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                    }, servers[server_name] or {}))
-                end,
-            })
+            for server_name, server_config in pairs(servers) do
+                require("lspconfig")[server_name].setup(vim.tbl_extend("force", {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                }, server_config))
+            end
         end,
     },
     {
