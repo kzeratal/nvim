@@ -5,7 +5,6 @@ return {
         ensure_installed = {
             "clang-format",
             "shfmt",
-            "sql-formatter",
             "stylua",
         },
     },

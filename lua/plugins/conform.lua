@@ -6,7 +6,6 @@ return {
             cpp = { "clang_format" },
             lua = { "stylua" },
             python = { "isort", "ruff_format" },
-            sql = { "sql_formatter" },
         },
         formatters = {
             stylua = {
