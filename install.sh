@@ -2,11 +2,11 @@
 
 # Install dependencies
 if command -v brew &>/dev/null; then
-    brew install fzf ripgrep
+    brew install fzf ripgrep node
 elif command -v dnf &>/dev/null; then
-    sudo dnf install -y fzf ripgrep
+    sudo dnf install -y fzf ripgrep nodejs
 elif command -v apt &>/dev/null; then
-    sudo apt install -y fzf ripgrep
+    sudo apt install -y fzf ripgrep nodejs
 fi
 
 # Get the directory where this script is located
