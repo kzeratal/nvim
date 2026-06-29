@@ -1,3 +1,12 @@
+## Dependencies
+
+- [fzf](https://github.com/junegunn/fzf)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [Node.js](https://nodejs.org) >= 18
+- gcc
+
+---
+
 ## Linux (Fedora)
 
 ### Clone and symlink config
