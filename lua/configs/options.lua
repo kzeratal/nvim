@@ -26,14 +26,7 @@ vim.opt.undodir = os.getenv("HOME") .. "/.undodir"
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
-local function ensure_node()
-    local node = vim.fn.exepath("node")
-    if node ~= "" then
-        local major = tonumber(vim.trim(vim.fn.system(node .. " -e 'process.stdout.write(String(process.versions.node.split(\".\")[0]))'")))
-        if major and major >= 18 then
-            return
-        end
-    end
+local function use_newest_nvm_node()
     local nvm_dir = vim.fn.expand("~/.nvm/versions/node")
     if vim.fn.isdirectory(nvm_dir) == 0 then
         return
@@ -50,5 +43,23 @@ local function ensure_node()
     if best then
         vim.env.PATH = best .. ":" .. vim.env.PATH
     end
+end
+
+local function ensure_node()
+    local node = vim.fn.exepath("node")
+    if node == "" then
+        use_newest_nvm_node()
+        return
+    end
+    vim.system(
+        { node, "-e", "process.stdout.write(String(process.versions.node.split('.')[0]))" },
+        { text = true },
+        vim.schedule_wrap(function(result)
+            local major = tonumber(vim.trim(result.stdout or ""))
+            if not (major and major >= 18) then
+                use_newest_nvm_node()
+            end
+        end)
+    )
 end
 ensure_node()
