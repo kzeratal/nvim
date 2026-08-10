@@ -17,7 +17,7 @@ return {
             },
         },
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
+            require("nvim-treesitter").install(opts.ensure_installed):wait(300000)
 
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = "*",
