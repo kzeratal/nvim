@@ -15,3 +15,8 @@ vim.keymap.set("n", "#", "#zzzv", { silent = true })
 
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
+
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
+vim.keymap.set("x", "J", ":m '>+1<CR>gv")
+vim.keymap.set("x", "K", ":m '<-2<CR>gv")
