@@ -7,3 +7,15 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.expandtab = false
     end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "netrw",
+    callback = function(args)
+        vim.opt_local.scrolloff = 0
+        vim.keymap.set("n", "-", function()
+            local up = vim.keycode("<Plug>NetrwBrowseUpDir")
+            local center = vim.keycode("<Cmd>normal! zz<CR>")
+
+            vim.api.nvim_feedkeys(up .. center, "m", false)
+        end, { buffer = args.buf, silent = true })
+    end,
+})
