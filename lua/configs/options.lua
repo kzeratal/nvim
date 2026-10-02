@@ -1,8 +1,11 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
