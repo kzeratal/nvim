@@ -4,6 +4,8 @@
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [Node.js](https://nodejs.org) >= 18
 - gcc
+- [Neovim](https://neovim.io/) >= 0.12.0
+- [tree-sitter-cli](https://crates.io/crates/tree-sitter-cli) >= 0.26.1
 
 ---
 
