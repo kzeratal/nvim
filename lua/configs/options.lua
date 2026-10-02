@@ -4,6 +4,15 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+
+vim.opt.list = true
+vim.opt.listchars = {
+    tab = "» ",
+    lead = ".",
+    trail = "·",
+    nbsp = "␣",
+}
+
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
