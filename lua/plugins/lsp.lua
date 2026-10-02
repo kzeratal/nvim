@@ -26,7 +26,16 @@ return {
 
             local servers = {
                 bashls = {},
-                clangd = {},
+                clangd = {
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--clang-tidy",
+                        "--completion-style=detailed",
+                        "--header-insertion=never",
+                        "--query-driver=/usr/bin/clang,/usr/bin/clang-*",
+                    },
+                },
                 lua_ls = {
                     settings = {
                         Lua = {
