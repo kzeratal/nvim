@@ -33,12 +33,6 @@ return {
             end,
         },
         {
-            "<leader>fh",
-            function()
-                require("fzf-lua").help_tags()
-            end,
-        },
-        {
             "<leader>pc",
             function()
                 require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
